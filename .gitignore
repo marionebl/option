@@ -1,0 +1,6 @@
+/coverage
+/lib
+/types
+/node_modules
+*.log
+.DS_Store
