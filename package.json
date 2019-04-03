@@ -6,7 +6,7 @@
   "author": "Mario Nebl <hello@mario-nebl.de>",
   "license": "MIT",
   "main": "./lib/index.js",
-  "types": "./types/index.d.ts",
+  "types": "./lib/index.d.ts",
   "devDependencies": {
     "@marionebl/result": "^1.0.2",
     "@types/jest": "^24.0.11",
