@@ -14,13 +14,19 @@ jobs:
             - v1-dependencies-{{ checksum "yarn.lock" }}
             - v1-dependencies-
 
-      - run: yarn install
+      - run: 
+          name: Install depdencies
+          command: yarn install
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "yarn.lock" }}
 
-      - run: yarn tsc
+      - run: 
+          name: Compile
+          command: yarn build
 
-      - run: yarn jest --collect-coverage
+      - run: 
+          name: Test
+          command: yarn test --collect-coverage
