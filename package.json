@@ -7,9 +7,8 @@
   "license": "MIT",
   "main": "./lib/index.js",
   "types": "./types/index.d.ts",
-  "files": ["./lib", "./types"],
   "devDependencies": {
-    "@marionebl/result": "^1.0.0",
+    "@marionebl/result": "^1.0.2",
     "@types/jest": "^24.0.11",
     "jest": "^24.6.0",
     "jest-cli": "^24.6.0",
