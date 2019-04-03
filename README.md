@@ -10,13 +10,15 @@
 
 ---
 
-## Named Constructors
+## API
+
+### Named Constructors
 
 * [.from](#from)
 * [.None](#none)
 * [.Some](#some)
 
-## Methods
+### Methods
 
 * [and](#and)
 * [andThen](#andthen)
