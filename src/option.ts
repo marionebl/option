@@ -120,7 +120,7 @@ export interface Some<Payload> {
    * assert.throws(() => maybe.unwrap());
    * ```
    */
-  map<T>(fn: (self: this) => T): Option<T>;
+  map<T>(fn: (self: Payload) => T): Option<T>;
 
 
   /**
@@ -614,7 +614,7 @@ export interface None {
    * assert.throws(() => maybe.unwrap());
    * ```
    */
-  map<T>(fn: (self: this) => T): None;
+  map<T>(fn: (self: any) => T): None;
 
   /**
    * Applies a function `(p: P) => T` to the contained value `p` (if any), or returns the provided fallback (if not).
@@ -1186,12 +1186,12 @@ export class Option<Payload> {
    * assert.throws(() => maybe.unwrap());
    * ```
    */
-  public map<T>(fn: (self: this) => T): Option<T> {
+  public map<T>(fn: (self: Payload) => T): Option<T> {
     if (typeof this.payload === "undefined") {
       return this as None;
     }
 
-    return Option.from(fn(this));
+    return Option.from(fn(this.payload));
   }
 
   /**

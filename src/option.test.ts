@@ -95,6 +95,22 @@ describe(".map", () => {
     expect(some.map(() => "anotherthing")).toEqual({ payload: "anotherthing" });
   });
 
+  test("call fn for Some()", () => {
+    const some = Option.Some("something");
+    const map = jest.fn(() => "anotherthing");
+    some.map(map);
+  
+    expect(map).toHaveBeenCalledTimes(1);
+  });
+
+  test("call fn for Some() with payload", () => {
+    const some = Option.Some("something");
+    const map = jest.fn(() => "anotherthing");
+    some.map(map);
+  
+    expect(map).toHaveBeenCalledWith("something");
+  });
+
   test("return None", () => {
     const none = Option.None();
     expect(none.map(() => "anotherthing")).toBe(none);
