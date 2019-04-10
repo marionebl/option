@@ -6,7 +6,6 @@
     "target": "es2015",
     "declaration": true,
     "declarationMap": true,
-    "declarationDir": "types",
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "strict": true
