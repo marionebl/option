@@ -13,7 +13,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@marionebl/result": "^1.0.2"
+    "@marionebl/result": "^1.0.7"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",

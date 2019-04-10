@@ -150,7 +150,7 @@ describe(".okOr", () => {
   test("return value of fallback() for None", () => {
     const none = Option.None();
     expect(none.okOr("Something went wrong")).toEqual(
-      Result.Err(new Error("Something went wrong"))
+      Result.Err("Something went wrong")
     );
   });
 });
@@ -164,7 +164,7 @@ describe(".okOrErlse", () => {
   test("return value of fallback() for None", () => {
     const none = Option.None();
     expect(none.okOrElse(() => "Something went wrong")).toEqual(
-      Result.Err(new Error("Something went wrong"))
+      Result.Err("Something went wrong")
     );
   });
 });
@@ -463,7 +463,7 @@ describe(".transpose", () => {
   });
 
   test("Some<Err> => Err", async () => {
-    const some = Option.Some(Result.Err(new Error("Something went wrong")));
+    const some = Option.Some(Result.Err("Something went wrong"));
     const result = await some.transpose();
 
     expect(await result.isErr()).toEqual(true);

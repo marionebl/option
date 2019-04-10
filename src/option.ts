@@ -208,7 +208,7 @@ export interface Some<Payload> {
    * assert.deepStrictEqual(err, Result.Err(new Error("Something went wrong")));
    * ```
    */
-  okOrElse(fn: () => string): Ok<Payload>;
+  okOrElse(fn: () => string | [string, any]): Ok<Payload>;
 
   /**
    * Returns `None` if the option is `None`, otherwise returns `b`.
@@ -490,7 +490,7 @@ export interface Some<Payload> {
    * assert.deepStrictEqual(ok, some.transpose());
    * ```
    */
-  transpose(): Promise<Result<Some<Payload>>>;
+  transpose(): Promise<Result<Some<Payload>, unknown>>;
 }
 
 export interface None {
@@ -680,7 +680,7 @@ export interface None {
    * assert.deepStrictEqual(err, Result.Err(new Error("Something went wrong")));
    * ```
    */
-  okOr(message: string): Err;
+  okOr<C = unknown>(message: string, code?: C): Err<C>;
 
   /**
    * Transforms the `Option<Payload>` into a `Result<Payload, Error>`, mapping `Some(Payload)` to `Ok(Payload)` and `None` to `Err(err)`.
@@ -701,7 +701,7 @@ export interface None {
    * assert.deepStrictEqual(err, Result.Err(new Error("Something went wrong")));
    * ```
    */
-  okOrElse(fn: () => string): Err;
+  okOrElse<C = unknown>(fn: () => string | [string, C]): Err<C>;
 
   /**
    * Returns `None` if the option is `None`, otherwise returns `b`.
@@ -978,7 +978,7 @@ export interface None {
    * assert.deepStrictEqual(ok, some.transpose());
    * ```
    */
-  transpose(): Promise<Result<None>>;
+  transpose(): Promise<Result<None, unknown>>;
 }
 
 export class Option<Payload> {
@@ -1273,12 +1273,12 @@ export class Option<Payload> {
    * assert.deepStrictEqual(err, Result.Err(new Error("Something went wrong")));
    * ```
    */
-  public okOr(message: string): Result<Payload> {
+  public okOr<C = unknown>(message: string, c?: C): Result<Payload, C> {
     if (typeof this.payload !== "undefined") {
       return Result.Ok(this.payload);
     }
 
-    return Result.Err(new Error(message));
+    return Result.Err(message);
   }
 
   /**
@@ -1300,12 +1300,13 @@ export class Option<Payload> {
    * assert.deepStrictEqual(err, Result.Err(new Error("Something went wrong")));
    * ```
    */
-  public okOrElse(fn: () => string): Result<Payload> {
+  public okOrElse<C>(fn: () => string | [string, C]): Result<Payload, C> {
     if (typeof this.payload !== "undefined") {
       return Result.Ok(this.payload);
     }
 
-    return Result.Err(new Error(fn()));
+    const args = fn();
+    return Array.isArray(args) ? Result.Err(...args) : Result.Err(args);
   }
 
   /**
@@ -1651,10 +1652,11 @@ export class Option<Payload> {
    * assert.deepStrictEqual(ok, some.transpose());
    * ```
    */
-  public async transpose(): Promise<Result<Option<Payload>>> {
+  public async transpose<C>(): Promise<Result<Option<Payload>, C>> {
     if (this.payload instanceof Result) {
       if (await this.payload.isErr()) {
-        return Result.Err(await this.payload.unwrapErr());
+        const err = await this.payload.unwrapErr();
+        return Result.Err(err.message);
       }
 
       if (await this.payload.isOk()) {

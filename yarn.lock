@@ -273,10 +273,24 @@
     "@types/istanbul-lib-coverage" "^2.0.0"
     "@types/yargs" "^12.0.9"
 
+"@marionebl/option@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@marionebl/option/-/option-1.0.4.tgz#edc8bf65ecaaa0598999e4ec7ef8f1e8a7dc0183"
+  integrity sha512-g32AyCz5GZwfEZsjNVrKk1ExXuMehjmbT1WYbznf4GywvBMdQW8By2TwMpHVZxeFtM9RpQQcRcKvqTqUszydmw==
+  dependencies:
+    "@marionebl/result" "^1.0.2"
+
 "@marionebl/result@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@marionebl/result/-/result-1.0.2.tgz#d8bb6678ee9de0f7197863dd2d8d8964b44208e0"
   integrity sha512-YnM16VDbxjb/9spdjDi/aekejUpbLuWWW/QzzehXFGdDKJS23DQFrC4GBXcfA9na2U+bYynuFU3bSUkzSskuXw==
+
+"@marionebl/result@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@marionebl/result/-/result-1.0.7.tgz#21136c93c0986dfd1eb42bb357dc9cf834c81086"
+  integrity sha512-vJYFWS7UlD0H66SU1lvLPUDil/CuQQxYpNUU2XOrPNCXlvAmZG3KL2qwir8KIf4SbJKdep7B+sOvRikSG0yWeg==
+  dependencies:
+    "@marionebl/option" "^1.0.4"
 
 "@types/babel__core@^7.1.0":
   version "7.1.0"
