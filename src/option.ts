@@ -28,7 +28,7 @@ export interface Some<Payload> {
    * assert.strictEqual(some.isNone(), false);
    *
    * const none = Option.None();
-   * assert.strictEqual(some.isNone(), true);
+   * assert.strictEqual(none.isNone(), true);
    * ```
    */
   isNone(): false;
@@ -521,7 +521,7 @@ export interface None {
    * assert.strictEqual(some.isNone(), false);
    *
    * const none = Option.None();
-   * assert.strictEqual(some.isNone(), true);
+   * assert.strictEqual(none.isNone(), true);
    * ```
    */
   isNone(): true;
@@ -1000,7 +1000,7 @@ export class Option<Payload> {
    * assert.strictEqual(some.unwrap(), 2);
    *
    * const none = Option.from(undefined);
-   * assert.strictEqual(some.isNone(), true);
+   * assert.strictEqual(none.isNone(), true);
    * ```
    */
   static from<Payload>(payload?: Payload): Option<Payload> {
@@ -1031,7 +1031,7 @@ export class Option<Payload> {
    * import { Option } from '@marionebl/option';
    *
    * const none = Option.from(undefined);
-   * assert.strictEqual(some.isNone(), true);
+   * assert.strictEqual(none.isNone(), true);
    * ```
    */
   static None(): None {
@@ -1067,7 +1067,7 @@ export class Option<Payload> {
    * assert.strictEqual(some.isNone(), false);
    *
    * const none = Option.None();
-   * assert.strictEqual(some.isNone(), true);
+   * assert.strictEqual(none.isNone(), true);
    * ```
    */
   public isNone(): this is None {
